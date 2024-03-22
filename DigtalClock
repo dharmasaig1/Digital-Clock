@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <title>Digital Clock</title>
+    <style>
+        div{
+            width: 600px;
+            height: 600px;
+            background-color: rgba(50, 50, 50, 0.394);
+            border-radius: 100%;
+            box-shadow: 0px 0px 15px black;
+            border: solid black 15px;
+            color: rgb(0, 0, 0);
+        }
+        div:hover{
+            width: 600px;
+            height: 600px;
+            background-color: rgba(73, 0, 0, 0.748);
+            border-radius: 100%;
+            box-shadow: 0px 0px 15px rgb(238, 255, 0);
+            border: solid rgb(255, 255, 255) 15px;
+            color: rgb(255, 255, 255);
+        }
+        #time{
+            padding-top: 150px;
+            font-size: 80px;
+        }
+        #date2{
+            font-size: 50px;
+            margin-top: 50px;
+        }
+        #day1{
+            margin-top: -50px;
+            font-size: 40px;
+        }
+        body{
+            background-image: linear-gradient(rgb(153,199,255), yellow);
+            background-size: 100% 792px;
+        }
+    </style>
+</head>
+<body>
+    <center>
+        <div>
+            <h1 id="time"></h1>
+            <h3 id="date2"></h3>
+            <h5 id="day1"></h5>
+        </div>
+    </center>
+    <script>
+        function currenttime()
+        {
+            let date = new Date();
+            let hh = date.getHours();
+            let mm = date.getMinutes();
+            let ss = date.getSeconds();
+            am_pm="AM"
+            if(hh>12)
+            {
+                hh_=12
+                am_pm="pm";
+            }
+            if(hh==0)
+            {
+                hh=12;
+                am_pm="AM";
+            }
+            let time=hh+":"+mm+":"+ss+" "+am_pm;
+            let yy=date.getFullYear();
+            let mo=date.getMonth();
+            let dd=date.getDate();
+            let date1=dd+"-"+mo+"-"+yy+" ";
+            document.getElementById("time").innerHTML=time;
+            document.getElementById("date2").innerHTML=date1;
+            let t=setTimeout(function(){currenttime()},1000)
+            let day;
+            switch(new Date().getDay())
+            {
+                case 0 : day="Sunday"
+                break;
+                case 1 : day="Monday"
+                break;
+                case 2 : day="Tuesday"
+                break;
+                case 3 : day="Wednesday"
+                break;
+                case 4 : day="Thursday"
+                break;
+                case 5 : day="Friday"
+                break;
+                case 6 : day="Saturday"
+                break;
+            }
+            document.getElementById("day1").innerHTML=day;
+        }
+        currenttime();
+    </script>
+</body>
+</html>
